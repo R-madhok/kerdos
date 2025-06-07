@@ -1,3 +1,5 @@
+### UNDERGOING RENOVATION — WILL BE READY AT ABOUT 10:25 PM EST
+
 # Kerdos — Heads-Up Limit Hold’em with NFSP (RLCard + PyTorch)
 
 *Kerdos* is a self-contained reinforcement-learning project that trains a **Neural Fictitious Self-Play (NFSP)** agent on heads-up limit Texas Hold’em using the [RLCard 1.2.0] framework and PyTorch 2.6. You can
