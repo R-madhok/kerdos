@@ -1,6 +1,8 @@
 
 # Kerdos — A Laptop-Scale Poker AI 
-### Version 1.0 Complete — Thanks to the Harvard Computer Society AI Bootcamp for teaching me so much. This is my final project for a mini-hackathon in only 3 hours.
+#### Version 1.0 Complete
+Thanks to the Harvard Computer Society AI Bootcamp for teaching me so much. For this program, my self-decided project for the 3-hour-long mini-hackathon was to build a Poker AI using reinforcement learning to improve two agents iteratively, producing a strong model.
+
 
 *Κέρδος* (kérdos) is Ancient Greek for **gain, profit, advantage**.  
 True to its name, **Kerdos** is a fully local reinforcement-learning bot that consistently beats *semi-pro* human players in heads-up fixed-limit Texas Hold’em—yet installs and runs in under two minutes on any recent macOS or Linux laptop.
