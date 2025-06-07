@@ -9,7 +9,7 @@
 True to its name, **Kerdos** is a fully local reinforcement-learning bot that consistently beats *semi-pro* human players in heads-up fixed-limit Texas Hold’em—yet installs and runs in under two minutes on any recent macOS or Linux laptop.
 
 <div align="center">
-<strong>Highlights</strong> • No cloud GPU • 1 Python file to run • 250 lines to train  
+<strong>Highlights:</strong> No cloud GPU • 1 Python file to run • 250 lines to train • Over 300,000 episodes of training
 </div>
 
 ---
@@ -18,11 +18,11 @@ True to its name, **Kerdos** is a fully local reinforcement-learning bot that co
 | Component | Details |
 |-----------|---------|
 | **Algorithms** | *Neural Fictitious Self-Play (NFSP)* for balance<br/>*Deep Q-Network (DQN)* for raw aggression |
-| **Training** | 300 k self-play hands (≈ 1 h on Apple M-series) |
+| **Training** | 325 k self-play hands |
 | **Evaluation** | Seat-swapped duel shows NFSP ties DQN while being **≈ 80 % less exploitable** |
 | **Human test** | A semi-pro club player won only 1 of 3 hands—variance dominates single hands, but NFSP held edge over a 500-hand set |
-| **Code size** | < 250 LoC for train / eval / play; demo repo ships **only 1** runnable file (`play.py`) |
-| **Footprint** | Repo < 5 MB; largest checkpoint fetched once from Google Drive (≈ 120 MB) |
+| **Code size** | < 250 LoC for eval/play (excluding train.py and others); demo repo ships **only 1** runnable file (`play.py`), although 20+ files to create |
+| **Footprint** | Repo < 5 MB; largest checkpoint fetched once from Google Drive |
 
 ---
 
@@ -65,7 +65,7 @@ Pay-off line prints after each showdown. Press **Ctrl-C** to quit.
 | `nfsp_limit_holdem_2.pt` | **Not in Git** — fetched automatically from Drive              |
 | `README.md`              | You are here                                                   |
 
-Training scripts (`train.py`, `resume_train.py`, `duel.py`) are available on the `full` branch if you want to reproduce results.
+Training scripts (`train.py`, `resume_train.py`, `duel.py`) will be made available _soon_ on the `full` branch if you want to reproduce results.
 
 ---
 
@@ -74,7 +74,6 @@ Training scripts (`train.py`, `resume_train.py`, `duel.py`) are available on the
 * **Educational:** Shows that *imperfect-information* RL can be reproduced on consumer hardware—no TPU or AWS bill.
 * **Portable demo:** One file, no GUI, runs the same in a classroom terminal or a CI pipeline.
 * **Balanced play:** NFSP converges toward Nash-like strategies; friends can’t crush it by simply “trapping” as they do vs naïve DQN bots.
-* **Extensible:** Swap environments (`'no-limit-holdem'`, `'leduc-holdem'`), adjust network sizes, or integrate WebSockets for a browser front-end.
 
 ## 6 License
 
