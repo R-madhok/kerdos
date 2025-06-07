@@ -24,11 +24,11 @@ True to its name, **Kerdos** is a fully local reinforcement-learning bot that co
 ## 2 Quick Start
 
 ```bash
-git clone https://github.com/<your-handle>/kerdos.git
+git clone https://github.com/R-madhok/kerdos.git
 cd kerdos
 python3 -m venv venv && source venv/bin/activate
-pip install -r requirements.txt          # rlcard, torch, gdown …
-python play.py                           # pick DQ or N-2 when prompted
+pip install -r requirements.txt
+python play.py
 
 ```
 *First run* downloads **nfsp\_limit\_holdem\_2.pt** from Google Drive.
