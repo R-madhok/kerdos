@@ -1,54 +1,55 @@
+# """
+# play.py  –  Heads-Up Limit Hold’em demo
+# • loads dqn_limit_holdem.pt   (local file < 100 MB)
+# • loads nfsp_limit_holdem_2.pt (downloads once from Google Drive if missing)
 
-# Human-vs-AI CLI.  Run:  python -m src.play
-# Press 0 (call), 1 (raise), or 2 (fold) when prompted.
+# Usage:  python play.py
+# """
 
-
-# src/play.py
-"""
-Human-vs-AI CLI
-Run:  python -m src.play
-During the hand press:
-    0 = call / check
-    1 = raise
-    2 = fold
-You will first be asked which model to play against:
-    N-2 -> models/nfsp_limit_holdem_2.pt
-    DQ  -> models/dqn_limit_holdem.pt
-"""
-
-import os
-import torch
-import rlcard
+import os, torch, rlcard, sys, subprocess, pathlib
 from rlcard.agents import LimitholdemHumanAgent
 
-ROOT = os.path.dirname(__file__)
+ROOT = pathlib.Path(__file__).resolve().parent
+
+# ── mapping: choice → (local filename, (optional) gdrive FILE_ID) ──────────
 MODELS = {
-    "N-2": os.path.join(ROOT, "..", "models", "nfsp_limit_holdem_2.pt"),
-    "DQ":  os.path.join(ROOT, "..", "models", "dqn_limit_holdem.pt"),
+    "DQ" : ("dqn_limit_holdem.pt",  None),               # already in repo
+    "N-2": ("nfsp_limit_holdem_2.pt", "1AbCDeFgHiJK"),   # ← paste your FILE_ID here
 }
 
-# ── ask user which bot ────────────────────────────────────────────
+# ── prompt user ─────────────────────────────────────────────────────────────
 while True:
-    choice = input("Choose opponent: [N-2] NFSP-2 or [DQ] DQN  → ").strip().upper()
-    if choice in MODELS:
-        MODEL_PATH = MODELS[choice]
+    pick = input("Choose opponent  [N-2] NFSP  or  [DQ] DQN  → ").strip().upper()
+    if pick in MODELS:
         break
-    print("Invalid choice. Type 'N-2' or 'DQ'.")
+    print("Type N-2 or DQ.")
 
-print(f"\nLoading {choice} model from {MODEL_PATH} …")
-ai_agent = torch.load(MODEL_PATH, weights_only=False)  # full object
+fname, gdrive_id = MODELS[pick]
+ckpt_path = ROOT / fname
 
-# ── environment setup ────────────────────────────────────────────
-env = rlcard.make("limit-holdem", config={"record_action": True})
+# ── download from Drive if necessary ───────────────────────────────────────
+if not ckpt_path.exists() and gdrive_id:
+    print(f"Downloading {fname} (~120 MB) from Google Drive …")
+    try:
+        # lazy-install gdown inside venv if user forgot requirements.txt
+        import gdown
+    except ImportError:
+        subprocess.check_call([sys.executable, "-m", "pip", "install", "gdown"])
+        import gdown
+
+    url = f"https://drive.google.com/uc?id={gdrive_id}"
+    gdown.download(url, str(ckpt_path), quiet=False)
+
+# ── load agent ─────────────────────────────────────────────────────────────
+print("Loading:", ckpt_path)
+ai_agent = torch.load(ckpt_path, weights_only=False)
+
+# ── start game ─────────────────────────────────────────────────────────────
+env   = rlcard.make("limit-holdem", config={"record_action": True})
 human = LimitholdemHumanAgent(num_actions=env.num_actions)
-env.set_agents([ai_agent, human])        # AI = seat-0 (dealer)
+env.set_agents([ai_agent, human])
 
-print("\n=== Heads-Up Limit Hold'em ===")
-print("AI is Seat-0 (acts first pre-flop, last post-flop).")
-print("Enter 0 (call/check), 1 (raise), or 2 (fold) when prompted.\n")
-
-# ── play loop ─────────────────────────────────────────────────────
+print("\nHeads-Up Limit Hold’em — enter 0 (call/check), 1 (raise), 2 (fold).")
 while True:
-    _, payoffs = env.run(is_training=False)
-    print("Payoffs (AI, You):", payoffs)
-
+    _, pay = env.run(is_training=False)
+    print("Payoffs (AI, You):", pay)
