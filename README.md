@@ -13,7 +13,7 @@ True to its name, **Kerdos** is a fully local reinforcement-learning bot that co
 | Component | Details |
 |-----------|---------|
 | **Algorithms** | *Neural Fictitious Self-Play (NFSP)* for balance<br/>*Deep Q-Network (DQN)* for raw aggression |
-| **Training** | 300 k self-play hands (≈ 3 h on Apple M-series) |
+| **Training** | 300 k self-play hands (≈ 1 h on Apple M-series) |
 | **Evaluation** | Seat-swapped duel shows NFSP ties DQN while being **≈ 80 % less exploitable** |
 | **Human test** | A semi-pro club player won only 1 of 3 hands—variance dominates single hands, but NFSP held edge over a 500-hand set |
 | **Code size** | < 250 LoC for train / eval / play; demo repo ships **only 1** runnable file (`play.py`) |
