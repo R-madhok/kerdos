@@ -14,7 +14,7 @@ ROOT = pathlib.Path(__file__).resolve().parent
 # ── mapping: choice → (local filename, (optional) gdrive FILE_ID) ──────────
 MODELS = {
     "DQ" : ("dqn_limit_holdem.pt",  None),               # already in repo
-    "N-2": ("nfsp_limit_holdem_2.pt", "1AbCDeFgHiJK"),   # ← paste your FILE_ID here
+    "N-2": ("nfsp_limit_holdem_2.pt", "1qFkux9z9SO4pTwBXPuNHoBRrLJcFm2xy"),   # ← paste your FILE_ID here
 }
 
 # ── prompt user ─────────────────────────────────────────────────────────────
