@@ -1,3 +1,4 @@
+
 # Kerdos — A Laptop-Scale Poker AI  
 *Κέρδος* (kérdos) is Ancient Greek for **gain, profit, advantage**.  
 True to its name, **Kerdos** is a fully local reinforcement-learning bot that consistently beats *semi-pro* human players in heads-up fixed-limit Texas Hold’em—yet installs and runs in under two minutes on any recent macOS or Linux laptop.
@@ -22,9 +23,54 @@ True to its name, **Kerdos** is a fully local reinforcement-learning bot that co
 
 ## 2 Quick Start
 
-```bash
+
 git clone https://github.com/<your-handle>/kerdos.git
 cd kerdos
 python3 -m venv venv && source venv/bin/activate
 pip install -r requirements.txt          # rlcard, torch, gdown …
 python play.py                           # pick DQ or N-2 when prompted
+
+
+*First run* downloads **nfsp\_limit\_holdem\_2.pt** from Google Drive.
+After that, everything runs completely offline.
+
+---
+
+## 3 Play Instructions
+
+| Prompt              | What to type | Result                  |
+| ------------------- | ------------ | ----------------------- |
+| `Choose opponent …` | `N-2`        | Balanced **NFSP-2** bot |
+| ″               ″   | `DQ`         | Aggressive **DQN** bot  |
+| In-game action      | `0`          | call / check            |
+| ″                   | `1`          | raise                   |
+| ″                   | `2`          | fold                    |
+
+Pay-off line prints after each showdown. Press **Ctrl-C** to quit.
+
+---
+
+## 4 Repository Contents
+
+| File                     | Purpose                                                        |
+| ------------------------ | -------------------------------------------------------------- |
+| `play.py`                | Self-contained CLI (downloads NFSP on first run)               |
+| `dqn_limit_holdem.pt`    | Sub-100 MB checkpoint committed in Git                         |
+| `requirements.txt`       | Exact package versions (`rlcard 1.2.0`, `torch ≥2.3`, `gdown`) |
+| `nfsp_limit_holdem_2.pt` | **Not in Git** — fetched automatically from Drive              |
+| `README.md`              | You are here                                                   |
+
+Training scripts (`train.py`, `resume_train.py`, `duel.py`) are available on the `full` branch if you want to reproduce results.
+
+---
+
+## 5 Why Kerdos Matters
+
+* **Educational:** Shows that *imperfect-information* RL can be reproduced on consumer hardware—no TPU or AWS bill.
+* **Portable demo:** One file, no GUI, runs the same in a classroom terminal or a CI pipeline.
+* **Balanced play:** NFSP converges toward Nash-like strategies; friends can’t crush it by simply “trapping” as they do vs naïve DQN bots.
+* **Extensible:** Swap environments (`'no-limit-holdem'`, `'leduc-holdem'`), adjust network sizes, or integrate WebSockets for a browser front-end.
+
+## 6 License
+
+MIT License for all code and checkpoints. RLCard and PyTorch retain their original open-source licenses.
