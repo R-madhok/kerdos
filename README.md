@@ -8,3 +8,6 @@
 
 Everything runs on macOS (Apple Silicon **or** Intel) inside a Python virtual environment.
 
+Download it, and run "python -m src.play"
+
+NFSP wasn't able to upload due to size, but I will get it up soon
