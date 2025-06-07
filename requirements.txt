@@ -1,0 +1,11 @@
+# Core RL environment and agents
+rlcard==1.2.0
+
+# PyTorch with CPU + Apple-Silicon wheels (user gets correct wheel via pip)
+torch>=2.3,<2.7
+
+# Needed only because RLCard’s logger imports it; harmless for play.py
+matplotlib>=3.8
+
+# Google-Drive downloader (play.py grabs the NFSP file once)
+gdown>=5.0
