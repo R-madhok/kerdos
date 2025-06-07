@@ -2,7 +2,7 @@
 # Kerdos — A Laptop-Scale Poker AI 
 #### Version 1.0 Complete
 ###### First, thanks to the Harvard Computer Society AI Bootcamp for teaching me so much, especially Carl, who always answered my seemingly never-ending stream of questions.
-###### Second, thanks to Abhinav Sukla for teaching me about poker and helping test the model
+###### Second, thanks to Abhinav Sukla for teaching me about poker, helping test the model, and being a great friend.
 
 
 *Κέρδος* (kérdos) is Ancient Greek for **gain, profit, advantage**.  
