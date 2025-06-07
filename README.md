@@ -1,7 +1,8 @@
 
 # Kerdos — A Laptop-Scale Poker AI 
 #### Version 1.0 Complete
-Thanks to the Harvard Computer Society AI Bootcamp for teaching me so much. For this program, my self-decided project for the 3-hour-long mini-hackathon was to build a Poker AI using reinforcement learning to improve two agents iteratively, producing a strong model.
+###### First, thanks to the Harvard Computer Society AI Bootcamp for teaching me so much, especially Carl, who always answered my seemingly never-ending stream of questions.
+###### Second, thanks to Abhinav Sukla for teaching me about poker and helping test the model
 
 
 *Κέρδος* (kérdos) is Ancient Greek for **gain, profit, advantage**.  
